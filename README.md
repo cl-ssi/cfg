@@ -1,4 +1,6 @@
 # Configuraciones varias
+@AcuaroTorres
+@cl-ssi/TIC
 
 ## Configuración del servidor
 
@@ -8,16 +10,17 @@ Servidor con IP: 10.8.119.35
 DNS server: 10.8.134.35
 
 Crear dos contenedores
-webserver: 10.0.0.100
-dbserver : 10.0.0.200
+- webserver: 10.0.0.100
+- dbserver : 10.0.0.200
 
-- Crear una red puente en el host
-- Crear los dos contenedores
-- Asociar la red puente a eth0 en ambos contenedores
-- Asignar un IP a cada contenedor
-- Reiniciar los contenedores
-- Agregar reglas para cada contenedor en iptables
-- Fijar las reglas en iptables con el paquete "iptables-persistent"
+Pasos
+1. Crear una red puente en el host
+2. Crear los dos contenedores
+3. Asociar la red puente a eth0 en ambos contenedores
+4. Asignar un IP a cada contenedor
+5. Reiniciar los contenedores
+6. Agregar reglas para cada contenedor en iptables
+7. Fijar las reglas en iptables con el paquete "iptables-persistent"
 
 
 ### Crear un puente con red 10.0.0.*
@@ -39,6 +42,7 @@ dbserver : 10.0.0.200
 ### Para ejecutar un shell desde el host
 `lxc exec webserver -- /bin/bash`
 
+### Agregar reglas a iptables
 ```
 PORT=50022
 PUBLIC_IP=10.8.119.35
