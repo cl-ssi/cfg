@@ -1,6 +1,4 @@
 # Configuraciones varias
-@AcuaroTorres
-@cl-ssi/TIC
 
 ## Configuración del servidor
 
