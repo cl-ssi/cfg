@@ -8,14 +8,14 @@ Servidor con IP: 10.8.119.35
 DNS server: 10.8.134.35
 
 #### instalar lxd e iniciarlo
-`apt install lxd lxd-client`
-`sudo lxd init`
+- `apt install lxd lxd-client`
+- `sudo lxd init`
 
 Crear dos contenedores
 - webserver: 10.0.0.100
 - dbserver : 10.0.0.200
 
-Pasos
+### Pasos
 1. Crear una red puente en el host
 2. Crear los dos contenedores
 3. Asociar la red puente a eth0 en ambos contenedores
@@ -23,7 +23,6 @@ Pasos
 5. Reiniciar los contenedores
 6. Agregar reglas para cada contenedor en iptables
 7. Fijar las reglas en iptables con el paquete "iptables-persistent"
-
 
 
 
