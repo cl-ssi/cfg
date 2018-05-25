@@ -32,6 +32,7 @@ Crear dos contenedores
 
 ### crear un contenedor con debian buster
 `lxc launch images:debian/buster/amd64 webserver`
+`lxc launch ubuntu:18.04 nombre-contenedor`
 
 ### Atachar la red a un contenedor
 `lxc network attach br0 webserver eth0`
