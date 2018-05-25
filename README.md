@@ -52,7 +52,7 @@ PORT=50022
 PUBLIC_IP=10.8.119.35
 CONTAINER_IP=10.0.0.100
 
-iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment "Forward ssh to the webserver container"
+iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment "ssh"
 ```
 
 ### Instalar iptables-persistent, preguntara si guardar las reglas, guardar todo
