@@ -72,3 +72,48 @@ iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT
 
 ### Para borrar la ruta 1
 `iptables -t nat -D PREROUTING 1`
+
+### setear IP de máquina webserver
+This file describes the network interfaces available on your system
+and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+        address 10.0.0.2
+        netmask 255.255.255.0
+        gateway 10.0.0.1
+```
+
+Insale en webserver
+apache2 ssh
+configuré en iptables un forward para el puerto 80 y el 22
+
+cambié en /etc/ssh/sshd_config el puerto 22 al 2233
+
+apt-get install sqlite3 php php-zip php-mysql php-sqlite3
+
+## creando dbserver
+lxc launch images:debian/9/amd64 dbserver
+lxc network attach br0 dbserver eth0
+lxc exec dbserver bash
+#vi /etc/network/interfaces
+
+setear IP
+iface eth0 inet static
+        address 10.0.0.5
+        netmask 255.255.255.0
+        gateway 10.0.0.1
+        
+apt-get install mariadb-server
+mysql_secure_installation
+//clave: Salud#123
+
+# mysql
+CREATE USER 'tic'@'localhost' IDENTIFIED BY 'Salud&123';
+create database intranet;
+GRANT ALL ON intranet.* TO 'tic'@'localhost';
