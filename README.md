@@ -9,11 +9,17 @@ Instalar ubuntu server con lo mínimo
 - DNS server: 10.8.134.35
 
 #### Cambiar puerto de ssh de la máquina base
-`# vi /etc/ssh/sshd_config
+
+```
+vi /etc/ssh/sshd_config
+```
 Cambiar el puerto 22 al 2233
 
-##### Reiniciar el servicio ssh
-` # service sshd restart
+#### Reiniciar el servicio ssh
+
+```
+# service sshd restart
+```
 
 #### instalar lxd e iniciarlo
 - `apt install lxd lxd-client`
@@ -21,11 +27,11 @@ Cambiar el puerto 22 al 2233
 
 
 
-Crear dos contenedores
+## Crear dos contenedores
 - webserver: 10.0.0.100
 - dbserver : 10.0.0.200
 
-### Pasos
+## Pasos
 1. Crear una red puente en el host
 2. Crear los dos contenedores
 3. Asociar la red puente a eth0 en ambos contenedores
@@ -35,31 +41,49 @@ Crear dos contenedores
 7. Fijar las reglas en iptables con el paquete "iptables-persistent"
 
 
-#### Crear un puente con red 10.0.0.*
-`lxc network create br0 ipv6.address=none ipv4.address=10.0.0.1/24 ipv4.nat=true`
+### Crear un puente con red 10.0.0.*
+```
+# lxc network create br0 ipv6.address=none ipv4.address=10.0.0.1/24 ipv4.nat=true
+```
 > opcional editar: lxc network edit br0
 
-#### Crear contenedor "webserver" con debian buster
-`lxc launch images:debian/buster/amd64 webserver`
-> `lxc launch ubuntu:18.04 nombre-contenedor`
+### Crear contenedor "webserver" con debian buster
+```
+# lxc launch images:debian/buster/amd64 webserver
+```
+> Ejemplo de como crear un contenedor con ubuntu `lxc launch ubuntu:18.04 nombre-contenedor`
 
-#### Atachar la red a un contenedor
-`lxc network attach br0 webserver eth0`
+### Atachar la red a un contenedor
 
-#### Setear el IP 10.0.0.100 al contenedor
-`lxc config device set webserver eth0 ipv4.address 10.0.0.100`
+```
+# lxc network attach br0 webserver eth0
+```
 
-#### Reiniciar el contender
-`lxc restart webserver`
+### Setear el IP 10.0.0.100 al contenedor
+
+```
+# lxc config device set webserver eth0 ipv4.address 10.0.0.100
+```
+
+### Reiniciar el contender
+```
+# lxc restart webserver
+```
 
 ### Para ejecutar un shell desde el host
-`lxc exec webserver bash`
+```
+# lxc exec webserver bash
+```
 
 ### Instalar ssh, apache y php en el contenedor webserver
-`root@webserver:~# apt-get install ssh apache2 php7 php7-xml php7-zip php7-sqlite3 sqlite3 
+```
+root@webserver:~# apt-get install ssh apache2 php7 php7-xml php7-zip php7-sqlite3 sqlite3 
+```
 
 ### setear IP del contenedor webserver
-`root@webserver:~# vi /etc/network/interfaces
+```
+root@webserver:~# vi /etc/network/interfaces
+```
 
 ```
 iface eth0 inet static
@@ -69,7 +93,10 @@ iface eth0 inet static
 ```
 
 ### Reiniciar el contenedor
-`root@webserver:~# reboot
+
+```
+root@webserver:~# reboot
+```
 
 ### En el servidor base agregar reglas a iptables
 ```
@@ -86,7 +113,11 @@ iface eth0 inet static
 lxc launch images:debian/9/amd64 dbserver
 lxc network attach br0 dbserver eth0
 lxc exec dbserver bash
+```
+
+```
 root@dbserver:~# vi /etc/network/interfaces
+```
 
 ```
 setear IP
@@ -104,8 +135,13 @@ root@dbserver:~# mysql_secure_installation
 > clave: Salud#123
 
 #### Configurar mariadb para que permita conexiones remotas.
-`root@dbserver:~# vi /etc/mysql/mariadb.conf.d/50-server.cnf
+
+```
+root@dbserver:~# vi /etc/mysql/mariadb.conf.d/50-server.cnf
+```
+
 Comentar las líneas del archivo
+
 ```
 #skip-networking
 #bind-address = <some ip-address>
@@ -113,8 +149,10 @@ Comentar las líneas del archivo
 
 
 #### Permitir conexión de root dentro de la red
-`root@dbserver:~# mysql
-`GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.8.%.%' IDENTIFIED BY 'Salud&123' WITH GRANT OPTION;
+```
+root@dbserver:~# mysql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.8.%.%' IDENTIFIED BY 'Salud&123' WITH GRANT OPTION;
+```
 
 #### Después crear los usuarios desde un cliente de mysql como HeidiSql
 
