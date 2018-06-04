@@ -4,14 +4,14 @@
 
 Escenario:
 
-Instalar ubuntu server con lo mínimo
+Instalar debian o ubuntu server con lo mínimo (sin entorno gráfico ni nada, sólo red)
 - Servidor con IP: 10.8.119.35 
 - DNS server: 10.8.134.35
 
 #### Cambiar puerto de ssh de la máquina base
 
 ```
-vi /etc/ssh/sshd_config
+# vi /etc/ssh/sshd_config
 ```
 Cambiar el puerto 22 al 2233
 
@@ -157,27 +157,38 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.8.%.%' IDENTIFIED BY 'Salud&123' WITH 
 #### Después crear los usuarios desde un cliente de mysql como HeidiSql
 
 > De todas formas para crear un usuario a mano es así:
+
 > Crear el usuario "tic" y la base de datos "intranet" y asignarsela
-`CREATE USER 'tic'@'localhost' IDENTIFIED BY 'Salud&123';
-`create database intranet;
-`GRANT ALL ON intranet.* TO 'tic'@'localhost';
+```
+CREATE USER 'tic'@'localhost' IDENTIFIED BY 'Salud&123';
+create database intranet;
+GRANT ALL ON intranet.* TO 'tic'@'localhost';
+```
 >me falta crear el usuario para que se conecte remotamente. eso no lo hice ya que ocupe el HeidiSql para crearlo
 
 
-### Instalar iptables-persistent, preguntara si guardar las reglas, guardar todo
+### En el servidor base agregar reglas a iptables para mysql
+```
+# PORT=3306
+# PUBLIC_IP=10.8.119.35
+# CONTAINER_IP=10.0.0.200
+
+# iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment "mysql"
+```
+
+## Instalar iptables-persistent en el servidor base, preguntará si guardar las reglas, guardar todo
 `apt-get install iptables-persistent`
 
 ### En caso de agregar o cambiar una regla, guardarla con 
 `netfilter-persistent save`
-
-
-### lista las imagenes para crear contenedores
-`lxc image list images:`
-
-
 
 ### Para listar las rutas
 `iptables -t nat -L PREROUTING --line-numbers`
 
 ### Para borrar la ruta 1
 `iptables -t nat -D PREROUTING 1`
+
+
+## Otros apuntes
+### lista las imagenes para crear contenedores
+`lxc image list images:`
