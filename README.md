@@ -214,7 +214,6 @@ nameserver 10.0.0.1
 
 root@sftpserver:~# reboot
 root@leia:~# lxc exec sftpserver bash
-# apt-get install ssh
 root@sftpserver:~# groupadd sftpusers
 root@sftpserver:~# useradd -g sftpusers -d /home/estadistica -s /sbin/nologin estadistica
 root@sftpserver:~# passwd estadistica
@@ -222,20 +221,24 @@ Enter new UNIX password: salud2019
 Retype new UNIX password: salud2019
 passwd: password updated successfully
 
-Modify the the /etc/ssh/sshd_config file and comment out the following line:
+root@sftpserver:/# apt-get install ssh
+
+root@sftpserver:/# vi /etc/ssh/sshd_config
+// Cambiar 
+Port:22  --> Port : 2222
+// Comentar línea en archivo /etc/ssh/sshd_config 
 #Subsystem       sftp    /usr/libexec/openssh/sftp-server
-
-Next, add the following line to the /etc/ssh/sshd_config file
+// Agregar la siguiente línea en el mismo archivo, /etc/ssh/sshd_config
 Subsystem       sftp    internal-sftp
-
+// Agregar al final del archivo /etc/ssh/sshd_config
 Match Group sftpusers
         ChrootDirectory /home/%u
         ForceCommand internal-sftp
 
-mkdir /home/estadistica
-mkdir /home/estadistica/archivos
-root@sftpserver:/home/estadistica# chown estadistica:sftpusers /home/estadistica/archivos
-root@sftpserver:/# vi /etc/ssh/sshd_config  // cambiar Port a 2222
+root@sftpserver:/# mkdir /home/estadistica
+root@sftpserver:/# mkdir /home/estadistica/archivos
+root@sftpserver:/# chown estadistica:sftpusers /home/estadistica/archivos
+root@sftpserver:/# vi /etc/ssh/sshd_config  
 root@sftpserver:/# service sshd restart
 
 exit
