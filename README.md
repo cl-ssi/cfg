@@ -194,7 +194,7 @@ GRANT ALL ON intranet.* TO 'tic'@'localhost';
 `lxc image list images:`
 
 
-## SFTP server
+## SFTP server para estadistica
 ```
 root@leia:~# lxc launch images:debian/buster/amd64 sftpserver
 root@leia:~# lxc network attach br0 sftpserver eth0
@@ -231,5 +231,22 @@ Subsystem       sftp    internal-sftp
 Match Group sftpusers
         ChrootDirectory /home/%u
         ForceCommand internal-sftp
+
+mkdir /home/estadistica
+mkdir /home/estadistica/archivos
+root@sftpserver:/home/estadistica# chown estadistica:sftpusers /home/estadistica/archivos
+root@sftpserver:/# vi /etc/ssh/sshd_config  // cambiar Port a 2222
+root@sftpserver:/# service sshd restart
+
+exit
+
+root@leia:~# PORT=2222
+root@leia:~# PUBLIC_IP=10.8.119.35
+root@leia:~# CONTAINER_IP=10.0.0.50
+root@leia:~# iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment "sftp"
+root@leia:~# netfilter-persistent save
+
+Probar con un cliente de sftp
+sftp -P 2222 estadistica@10.0.0.50  password:salud2019
 
 ```
