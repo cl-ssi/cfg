@@ -109,11 +109,26 @@ iface eth0 inet static
         netmask 255.255.255.0
         gateway 10.0.0.1
         
-apt-get install mariadb-server
-mysql_secure_installation
+# MariaDB
+`# apt-get install mariadb-server
+`# mysql_secure_installation
 //clave: Salud#123
 
-# mysql
-CREATE USER 'tic'@'localhost' IDENTIFIED BY 'Salud&123';
-create database intranet;
-GRANT ALL ON intranet.* TO 'tic'@'localhost';
+Configurar mariadb para que permita conexiones remotas.
+`# vi /etc/mysql/mariadb.conf.d/50-server.cnf
+Comentar las líneas del archivo
+` #skip-networking
+` #bind-address = <some ip-address>
+
+
+Permitir conexión de root dentro de la red
+`GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.8.%.%' IDENTIFIED BY 'Salud&123' WITH GRANT OPTION;
+
+Después crear los usuarios desde un cliente de mysql como HeidiSql
+
+De todas formas para crear un usuario a mano es así:
+Crear el usuario "tic" y la base de datos "intranet" y asignarsela
+`CREATE USER 'tic'@'localhost' IDENTIFIED BY 'Salud&123';
+`create database intranet;
+`GRANT ALL ON intranet.* TO 'tic'@'localhost';
+me falta crear el usuario para que se conecte remotamente. eso no lo hice ya que ocupe el HeidiSql para crearlo
