@@ -192,3 +192,44 @@ GRANT ALL ON intranet.* TO 'tic'@'localhost';
 ## Otros apuntes
 ### lista las imagenes para crear contenedores
 `lxc image list images:`
+
+
+## SFTP server
+```
+root@leia:~# lxc launch images:debian/buster/amd64 sftpserver
+root@leia:~# lxc network attach br0 sftpserver eth0
+root@leia:~# lxc config device set sftpserver eth0 ipv4.address 10.0.0.50
+root@leia:~# lxc exec sftpserver bash
+root@sftpserver:~# vi /etc/network/interfaces
+
+iface eth0 inet static
+        address 10.0.0.50
+        netmask 255.255.255.0
+        gateway 10.0.0.1
+
+root@sftpserver:~# vi /etc/resolv.conf
+domain lxd
+search lxd
+nameserver 10.0.0.1
+
+root@sftpserver:~# reboot
+root@leia:~# lxc exec sftpserver bash
+# apt-get install ssh
+root@sftpserver:~# groupadd sftpusers
+root@sftpserver:~# useradd -g sftpusers -d /home/estadistica -s /sbin/nologin estadistica
+root@sftpserver:~# passwd estadistica
+Enter new UNIX password: salud2019
+Retype new UNIX password: salud2019
+passwd: password updated successfully
+
+Modify the the /etc/ssh/sshd_config file and comment out the following line:
+#Subsystem       sftp    /usr/libexec/openssh/sftp-server
+
+Next, add the following line to the /etc/ssh/sshd_config file
+Subsystem       sftp    internal-sftp
+
+Match Group sftpusers
+        ChrootDirectory /home/%u
+        ForceCommand internal-sftp
+
+```
