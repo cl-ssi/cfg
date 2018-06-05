@@ -28,8 +28,8 @@ Cambiar el puerto 22 al 2233
 
 
 ## Crear dos contenedores
-- webserver: 10.0.0.100
-- dbserver : 10.0.0.200
+- webserver: 10.0.0.2
+- dbserver : 10.0.0.5
 
 ## Pasos
 1. Crear una red puente en el host
@@ -59,10 +59,10 @@ Cambiar el puerto 22 al 2233
 # lxc network attach br0 webserver eth0
 ```
 
-### Setear el IP 10.0.0.100 al contenedor
+### Setear el IP 10.0.0.2 al contenedor
 
 ```
-# lxc config device set webserver eth0 ipv4.address 10.0.0.100
+# lxc config device set webserver eth0 ipv4.address 10.0.0.2
 ```
 
 ### Reiniciar el contender
@@ -102,7 +102,7 @@ root@webserver:~# reboot
 ```
 # PORT=22
 # PUBLIC_IP=10.8.119.35
-# CONTAINER_IP=10.0.0.100
+# CONTAINER_IP=10.0.0.2
 
 # iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment "ssh"
 ```
@@ -132,7 +132,6 @@ iface eth0 inet static
 root@dbserver:~# apt-get install mariadb-server
 root@dbserver:~# mysql_secure_installation
 ```
-> clave: Salud#123
 
 #### Configurar mariadb para que permita conexiones remotas.
 
@@ -151,7 +150,7 @@ Comentar las líneas del archivo
 #### Permitir conexión de root dentro de la red
 ```
 root@dbserver:~# mysql
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.8.%.%' IDENTIFIED BY 'Salud&123' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.8.%.%' IDENTIFIED BY '*******' WITH GRANT OPTION;
 ```
 
 #### Después crear los usuarios desde un cliente de mysql como HeidiSql
@@ -160,7 +159,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.8.%.%' IDENTIFIED BY 'Salud&123' WITH 
 
 > Crear el usuario "tic" y la base de datos "intranet" y asignarsela
 ```
-CREATE USER 'tic'@'localhost' IDENTIFIED BY 'Salud&123';
+CREATE USER 'tic'@'localhost' IDENTIFIED BY '*****';
 create database intranet;
 GRANT ALL ON intranet.* TO 'tic'@'localhost';
 ```
@@ -171,7 +170,7 @@ GRANT ALL ON intranet.* TO 'tic'@'localhost';
 ```
 # PORT=3306
 # PUBLIC_IP=10.8.119.35
-# CONTAINER_IP=10.0.0.200
+# CONTAINER_IP=10.0.0.5
 
 # iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment "mysql"
 ```
@@ -217,8 +216,8 @@ root@leia:~# lxc exec sftpserver bash
 root@sftpserver:~# groupadd sftpusers
 root@sftpserver:~# useradd -g sftpusers -d /home/estadistica -s /sbin/nologin estadistica
 root@sftpserver:~# passwd estadistica
-Enter new UNIX password: salud2019
-Retype new UNIX password: salud2019
+Enter new UNIX password: 
+Retype new UNIX password: 
 passwd: password updated successfully
 
 root@sftpserver:/# apt-get install ssh
