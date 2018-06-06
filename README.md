@@ -79,6 +79,8 @@ Cambiar el puerto 22 al 2233
 ```
 root@webserver:~# apt-get install ssh apache2 php7 php7-xml php7-zip php7-sqlite3 sqlite3 
 ```
+- Habilitar mod_rewrite `#a2enmod rewrite`
+- `AllowOverride All` en alias o configuracion de apache
 
 ### setear IP del contenedor webserver
 ```
