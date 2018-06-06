@@ -13,7 +13,7 @@ Header set X-Frame-Options: "sameorigin"
 - Se recomienda desactivar el método OPTIONS en el servidor web.
 > https://www.owasp.org/index.php/Test_HTTP_Methods_(OTG-CONFIG-006)
 
-Ingresar esto en /etc/apache2/apache2.conf dentro de <Directory />
+Ingresar esto en /etc/apache2/apache2.conf dentro de `<Directory />`
 ```
         RewriteEngine On
         RewriteCond %{REQUEST_METHOD} !^(GET|POST|HEAD)
