@@ -24,4 +24,9 @@ $ git config credential.helper store
 $ composer dump-autoload
 ```
 
-
+## Cómo crear y subir una rama local
+```
+git branch <nueva-rama>
+git checkout <nueva-rama>
+git push -u origin <nueva-rama>
+```
