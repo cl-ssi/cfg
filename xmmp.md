@@ -43,3 +43,27 @@ root@xmpp:~# service prosody restart; service prosody status
 - Abrir cliente como el pidgin
 - usuario alvaro.torres
 - dominio intranet.saludiquique.cl
+
+
+### Agregar usuarios y grupos por BD ###
+#### Query####
+```
+SET @usuario = 'alvaro.torres';
+SET @nombre = 'Alvaro Torres Fuchslocher';
+SET @grupo = 'TIC';
+SET @clave = '****';
+
+
+INSERT INTO prosody (`host`, `user`, `store`, `key`, `type`, `value`) 
+VALUES ('intranet.ssiq.cl', @usuario, 'accounts', 'password', 'string', @clave);
+
+INSERT INTO prosody (`host`, `user`, `store`, `key`, `type`, `value`) 
+SELECT `host`, `user`, 'roster' as `store`, 
+	concat(@usuario, '@intranet.ssiq.cl') as `key`, 'json' as `type`, 
+	concat('{"name":"',@nombre,'","groups":{"',@grupo,'":true},"subscription":"both"}') as `value` 
+FROM prosody WHERE `store`='accounts' and `user` != @usuario;
+
+INSERT INTO prosody (`host`, `user`, `store`, `key`, `type`, `value`) 
+SELECT `host`, @usuario as `user`, `store`, `key`, `type`, `value`
+FROM prosody where `store`='roster' AND `key` != concat(@usuario, '@intranet.ssiq.cl') group by `key`;
+```
