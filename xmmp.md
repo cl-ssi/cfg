@@ -1,6 +1,6 @@
-## Crear servidor XMMP ##
+## Crear servidor XMMP
 
-### Preparar el contenedor ###
+### Preparar el contenedor
 ```
 // Crear contenedor xmpp
 root@leia:~# lxc launch images:debian/9/amd64 xmpp
@@ -19,7 +19,7 @@ root@xmpp:~# reboot
 
 ```
 
-### Dentro del servidor XMMP ###
+### Dentro del servidor XMMP
 ```
 root@xmpp:~# apt-get install prosody lua-dbi-mysql
 
@@ -39,14 +39,14 @@ root@xmpp:~# service prosody restart; service prosody status
 
 ```
 
-### Cliente ###
+### Cliente
 - Abrir cliente como el pidgin
 - usuario alvaro.torres
 - dominio intranet.saludiquique.cl
 
 
-### Agregar usuarios y grupos por BD ###
-#### Query####
+### Agregar usuarios y grupos por BD
+#### Query
 ```
 SET @usuario = 'alvaro.torres';
 SET @nombre = 'Alvaro Torres Fuchslocher';
