@@ -1,4 +1,4 @@
-´´´
+```
 Instalar Composer
 Descargar PHP, MySQL, Git (zips, no los instalables)
 Descomprimir PHP, MySQL y Git en carpetas
@@ -25,4 +25,4 @@ datadir=E:\\mydata\\data
 
 Para PHP, descomentar en php.ini
 extension=fileinfo
-´´´
+```
