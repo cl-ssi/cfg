@@ -25,4 +25,7 @@ datadir=E:\\mydata\\data
 
 Para PHP, descomentar en php.ini
 extension=fileinfo
+extension=pdo_mysql
+extension=pdo_sqlite
+
 ```
