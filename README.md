@@ -21,17 +21,19 @@ Descomentar y cambiar el puerto 22 al 2233 (:wq = guardar y salir)
 # service sshd restart
 ```
 
-#### Modificar /etc/apt/sources.list
+#### Modificar /etc/apt/sources.list (no se para que hice esto)
 - En la línea: "deb:http://deb.debian.org/debian/ buster main" agregar al final de la línea `contrib non-free`
 - `apt-get update`
 - `apt-get upgrade`
 
 #### Para Debian hay que instalar LXD desde SNAP
-- `apt-get install snap`
+- `apt-get install snapd`
 - `snap install lxd`
-- `lxd init`
+- `apt-get install lxc`
+- Luego relogear root
+- `lxd init` (completar las preguntas con máximo talento)
 
-#### instalar lxd e iniciarlo (para otros SO)
+#### (esto no hay que hacerlo porque es para otro SO) instalar lxd e iniciarlo
 - `apt install lxd lxd-client`
 - `lxd init`
 
