@@ -21,7 +21,7 @@ Descomentar y cambiar el puerto 22 al 2233 (:wq = guardar y salir)
 # service sshd restart
 ```
 
-#### Modificar /etc/apt/source.lst
+#### Modificar /etc/apt/sources.list
 - En la línea: "deb:http://deb.debian.org/debian/ buster main" agregar  `contrib non-free`
 
 #### instalar lxd e iniciarlo
