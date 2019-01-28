@@ -63,7 +63,7 @@ Descomentar y cambiar el puerto 22 al 2233 (:wq = guardar y salir)
 ```
 > Ejemplo de como crear un contenedor con ubuntu `lxc launch ubuntu:18.04 nombre-contenedor`
 
-### Atachar la red a un contenedor
+### Atachar la red a un contenedor (chequear en el contenedor el nombre de la interfaz de red -> #ip a)
 
 ```
 # lxc network attach br0 webserver eth0
@@ -87,7 +87,7 @@ Descomentar y cambiar el puerto 22 al 2233 (:wq = guardar y salir)
 
 ### Instalar ssh, apache y php en el contenedor webserver
 ```
-root@webserver:~# apt-get install ssh apache2 php7 php7-xml php7-zip php7-sqlite3 sqlite3 
+root@webserver:~# apt-get install ssh apache2 php7.3 php7.3-xml php7.3-zip php7.3-sqlite3 sqlite3 
 ```
 - Habilitar mod_rewrite `#a2enmod rewrite`
 - `AllowOverride All` en alias o configuracion de apache
@@ -117,6 +117,11 @@ root@webserver:~# reboot
 # CONTAINER_IP=10.0.0.2
 
 # iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment "ssh"
+
+
+# PORT=80
+
+# iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment "webserver"
 ```
 
 
