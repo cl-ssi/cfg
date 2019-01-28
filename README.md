@@ -22,13 +22,18 @@ Descomentar y cambiar el puerto 22 al 2233 (:wq = guardar y salir)
 ```
 
 #### Modificar /etc/apt/sources.list
-- En la línea: "deb:http://deb.debian.org/debian/ buster main" agregar  `contrib non-free`
+- En la línea: "deb:http://deb.debian.org/debian/ buster main" agregar al final de la línea `contrib non-free`
+- `apt-get update`
+- `apt-get upgrade`
 
-#### instalar lxd e iniciarlo
-- `apt install lxd lxd-client`
+#### Para Debian hay que instalar LXD desde SNAP
+- `apt-get install snap`
+- `snap install lxd`
 - `lxd init`
 
-
+#### instalar lxd e iniciarlo (para otros SO)
+- `apt install lxd lxd-client`
+- `lxd init`
 
 ## Crear dos contenedores
 - webserver: 10.0.0.2
