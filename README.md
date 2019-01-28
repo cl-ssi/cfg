@@ -13,7 +13,7 @@ Instalar debian o ubuntu server con lo mínimo (sin entorno gráfico ni nada, s�
 ```
 # vi /etc/ssh/sshd_config
 ```
-Cambiar el puerto 22 al 2233
+Descomentar y cambiar el puerto 22 al 2233 (:wq = guardar y salir)
 
 #### Reiniciar el servicio ssh
 
@@ -21,9 +21,12 @@ Cambiar el puerto 22 al 2233
 # service sshd restart
 ```
 
+#### Modificar /etc/apt/source.lst
+- En la línea: "deb:http://deb.debian.org/debian/ buster main" agregar  `contrib non-free`
+
 #### instalar lxd e iniciarlo
 - `apt install lxd lxd-client`
-- `sudo lxd init`
+- `lxd init`
 
 
 
