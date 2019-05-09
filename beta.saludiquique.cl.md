@@ -3,7 +3,7 @@
 ## Instalar el vim (preferencia personal) para editar archivos
 `# apt-get install vim`
 
-##Para setear la fecha y hora
+## Para setear la fecha y hora
 `# dpkg-reconfigure tzdata`
 
 ## Para instalar linux containers
