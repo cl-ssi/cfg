@@ -25,5 +25,5 @@
 - `# dpkg -i criu_3.11-2_amd64.deb `
 - `# apt-get install -f`
 
-### Igual ejecuté este comando pero no se si sirvió
-`# snap set lxd criu.enable=true`
+> Igual ejecuté este comando pero no se si sirvió
+> `# snap set lxd criu.enable=true`
