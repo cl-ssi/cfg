@@ -13,7 +13,7 @@
 
 ## Relogear e iniciar lxd
 `# lxd init`
-Seguir las instrucciones
+> Seguir las instrucciones
 
 
 ## Agregar servidor remoto a lxd
@@ -21,7 +21,7 @@ Seguir las instrucciones
 - `root@leia:~# lxc snapshot dbserver dbserver_snap1`
 
 ## No pude usar lxc copy porque no tenía criu, tuve que instalarlo, bajandolo
-criu_3.11-2_amd64.deb
+> criu_3.11-2_amd64.deb
 - `# dpkg -i criu_3.11-2_amd64.deb `
 - `# apt-get install -f`
 
