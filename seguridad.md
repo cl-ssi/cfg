@@ -8,6 +8,7 @@
 // En /etc/apache2/conf-enabled/security.conf descomentar la línea
 Header set X-Frame-Options: "sameorigin"
 ```
+- Reiniciar Apache `root@webserver:~# a2enmod headers`
 
 
 - Se recomienda desactivar el método OPTIONS en el servidor web.
