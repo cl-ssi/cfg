@@ -67,7 +67,7 @@ root@beta:~ # iptables -t nat -I PREROUTING -i eno1 -p TCP -d 10.8.119.158 --dpo
 - `root@leia:~# lxc remote add 10.8.119.158`
 - `root@leia:~# lxc snapshot dbserver dbserver_snap1`
 
-## No pude usar lxc copy porque no tenía criu, tuve que instalarlo, bajandolo
+## No pude usar lxc copy porque no tenía el paquete CRIU, tuve que instalarlo, bajandolo
 > criu_3.11-2_amd64.deb
 - `# dpkg -i criu_3.11-2_amd64.deb `
 - `# apt-get install -f`
@@ -81,9 +81,37 @@ root@beta:~ # iptables -t nat -I PREROUTING -i eno1 -p TCP -d 10.8.119.158 --dpo
 - `root@beta:~# lxc config device set webserver eth0 ipv4.address 10.0.0.2`
 - `root@beta:~# lxc restart webserver`
 - `root@beta:~# lxc exec webserver bash`
-- `root@webserver:~# apt-get install ssh apache2 php7.3 php7.3-xml php7.3-zip php7.3-sqlite3 sqlite3`
+
+- `root@webserver:~# dpkg-reconfigure tzdata`
+- `root@webserver:~# apt-get install ssh apache2 php7.3 php7.3-xml php7.3-zip php7.3-sqlite3 sqlite3 git`
 - `root@webserver:~# vi /etc/apache2/mods-available/alias.conf` cambiar AllowOverride None por All
 - `root@webserver:~# a2enmod rewrite`
 - `root@webserver:~# systemctl restart apache2`
+- `root@webserver:~# adduser tic`
+- `root@webserver:~# exit`
+
 - `root@beta:~# iptables -t nat -I PREROUTING -i eno1 -p TCP -d 10.8.119.158 --dport 22 -j DNAT --to-destination 10.0.0.2:22 -m comment --comment "ssh webserver"`
 - `root@beta:~# iptables -t nat -I PREROUTING -i eno1 -p TCP -d 10.8.119.158 --dport 80 -j DNAT --to-destination 10.0.0.2:80 -m comment --comment "apache2 webserver"`
+- `root@beta:~# netfilter-persistent save`
+
+
+- Instalar composer https://getcomposer.org/download/
+- Instalar laravel `composer global require laravel/installer`
+
+- Configurar apache `root@webserver:/etc/apache2/sites-available# mv 000-default.conf intranet.saludiquique.cl.conf`
+- Editar `root@webserver:/etc/apache2/sites-available# vi intranet.saludiquique.cl.conf`
+- Agregar 
+```
+    ServerName intranet.saludiquique.cl
+
+    ServerAdmin sistemas.ssi@redsalud.gob.cl
+    DocumentRoot /home/tic/intranet/public
+
+    <Directory /home/tic/intranet/public>
+        Options FollowSymLinks
+        AllowOverride All
+        Require All granted
+    </Directory>
+```
+- Habilitar sitio `root@webserver:# a2ensite intranet.saludiquique.cl`
+
