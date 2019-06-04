@@ -55,15 +55,15 @@ SET @clave = '****';
 
 
 INSERT INTO prosody (`host`, `user`, `store`, `key`, `type`, `value`) 
-VALUES ('intranet.ssiq.cl', @usuario, 'accounts', 'password', 'string', @clave);
+VALUES ('intranet.saludiquique.cl', @usuario, 'accounts', 'password', 'string', @clave);
 
 INSERT INTO prosody (`host`, `user`, `store`, `key`, `type`, `value`) 
 SELECT `host`, `user`, 'roster' as `store`, 
-	concat(@usuario, '@intranet.ssiq.cl') as `key`, 'json' as `type`, 
+	concat(@usuario, '@intranet.saludiquique.cl') as `key`, 'json' as `type`, 
 	concat('{"name":"',@nombre,'","groups":{"',@grupo,'":true},"subscription":"both"}') as `value` 
 FROM prosody WHERE `store`='accounts' and `user` != @usuario;
 
 INSERT INTO prosody (`host`, `user`, `store`, `key`, `type`, `value`) 
 SELECT `host`, @usuario as `user`, `store`, `key`, `type`, `value`
-FROM prosody where `store`='roster' AND `key` != concat(@usuario, '@intranet.ssiq.cl') group by `key`;
+FROM prosody where `store`='roster' AND `key` != concat(@usuario, '@intranet.saludiquique.cl') group by `key`;
 ```
