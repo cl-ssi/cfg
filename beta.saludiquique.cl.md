@@ -57,6 +57,9 @@ root@dbserver:~# apt install mysql-server
 ```
 root@dbserver:~# systemctl status mysql
 root@dbserver:~# mysql_secure_installation
+## para habilitar la carga de archivos CSV
+root@dbserver:~# mysql -u root -p 
+mysql> SET GLOBAL local_infile = 1;
 
 root@dbserver:~# exit
 
