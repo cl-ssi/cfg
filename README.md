@@ -104,6 +104,11 @@ iface eth0 inet static
         gateway 10.0.0.1
 ```
 
+### Idioma del sistema en español (sirve para fechas en php)
+```
+dpkg-reconfigure locales
+```
+
 ### Reiniciar el contenedor
 
 ```
