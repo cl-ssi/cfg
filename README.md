@@ -187,6 +187,11 @@ GRANT ALL ON intranet.* TO 'tic'@'localhost';
 ```
 >me falta crear el usuario para que se conecte remotamente. eso no lo hice ya que ocupe el HeidiSql para crearlo
 
+#### Instalar CRON
+```
+root@dbserver:~# apt-get install cron
+
+```
 
 ### En el servidor base agregar reglas a iptables para mysql
 ```
@@ -211,6 +216,15 @@ GRANT ALL ON intranet.* TO 'tic'@'localhost';
 
 
 ## Otros apuntes
+
+### Use ‘scp’ command without a password
+En el servidor origen ejecutar ssh-keygen, luego copiar el id_rsa.pub al servidor de destino
+```
+root@beta:dbserver:~# ssh-keygen -t rsa
+root@beta:dbserver:~# scp .ssh/id_rsa.pub tic@alpha.saludiquique.cl:/home/tic/.ssh/authorized_keys
+```
+
+
 ### lista las imagenes para crear contenedores
 `lxc image list images:`
 
