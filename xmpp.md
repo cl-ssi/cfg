@@ -8,17 +8,20 @@ root@leia:~# lxc launch images:debian/buster/amd64 xmpp
 // Atachar red br0 a eth0
 root@leia:~# lxc network attach br0 xmpp eth0
 
+// Setear la IP del contenedor
+root@leia:~# lxc config device set webserver eth0 ipv4.address 10.0.0.9
+
+root@leia:~# iptables -t nat -I PREROUTING -i eno1 -p TCP -d 10.8.119.35 --dport 5222 -j DNAT --to-destination 10.0.0.9:5222 -m comment --comment "xmpp server"
+
 // Entrar al contenedor
 root@leia:~# lxc exec xmpp -- bash
-
-// Setear la IP del contenedor
-root@leia:~# lxc config device set webserver eth0 ipv4.address 10.0.0.2
 
 (Opcional: Antes yo lo hacía desde dentro del contenedor)
 root@xmpp:~# vi /etc/network/interfaces
 
 // Reiniciar para que tome la nueva IP
 root@xmpp:~# reboot
+
 
 ```
 
