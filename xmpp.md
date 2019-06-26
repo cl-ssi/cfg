@@ -12,6 +12,9 @@ root@leia:~# lxc network attach br0 xmpp eth0
 root@leia:~# lxc exec xmpp -- bash
 
 // Setear la IP del contenedor
+root@leia:~# lxc config device set webserver eth0 ipv4.address 10.0.0.2
+
+(Opcional: Antes yo lo hacía desde dentro del contenedor)
 root@xmpp:~# vi /etc/network/interfaces
 
 // Reiniciar para que tome la nueva IP
