@@ -3,7 +3,7 @@
 ### Preparar el contenedor
 ```
 // Crear contenedor xmpp
-root@leia:~# lxc launch images:debian/9/amd64 xmpp
+root@leia:~# lxc launch images:debian/buster/amd64 xmpp
 
 // Atachar red br0 a eth0
 root@leia:~# lxc network attach br0 xmpp eth0
