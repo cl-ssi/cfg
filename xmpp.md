@@ -28,8 +28,21 @@ root@xmpp:~# reboot
 ### Dentro del servidor XMMP
 ```
 root@xmpp:~# apt-get install prosody lua-dbi-mysql
+```
 
+### Generar certificado y reiniciar prosody
+```
+root@xmpp:~# prosodyctl adduser alvaro.torres@intranet.saludiquique.cl
+root@xmpp:~# openssl genrsa -out /etc/prosody/certs/intranet.saludiquique.cl.key 2048
+root@xmpp:~# openssl req -new -x509 -key /etc/prosody/certs/intranet.saludiquique.cl.key -out /etc/prosody/certs/intranet.saludiquique.cl.crt -days 1095
+root@xmpp:~# chown prosody:prosody /etc/prosody/certs/intranet.*
+
+```
+
+### Editar configuracion prosody
+```
 root@xmpp:~# vi /etc/prosody/prosody.cfg.lua
+
 reemplazar example.com por intranet.saludiquique.cl
 setear admins = { "alvaro.torres@intranet.saludiquique.cl" }
 allow_registration = true;
@@ -37,10 +50,21 @@ storage = sql
 sql = { driver = "MySQL, database = "prosody" ......}
 VirtualHost "intranet.saludiquique.cl"
 
-root@xmpp:~# prosodyctl adduser alvaro.torres@intranet.saludiquique.cl
-root@xmpp:~# openssl genrsa -out /etc/prosody/certs/intranet.saludiquique.cl.key 2048
-root@xmpp:~# openssl req -new -x509 -key /etc/prosody/certs/intranet.saludiquique.cl.key -out /etc/prosody/certs/intranet.saludiquique.cl.crt -days 1095
-root@xmpp:~# chown prosody:prosody /etc/prosody/certs/intranet.*
+"groups"; -- Enable mod_groups
+ 
+groups_file = "/etc/prosody/sharedgroups.txt"
+
+https_certificate = "/etc/prosody/certs/intranet.saludiquique.cl.crt"
+```
+
+### Example contents of /etc/prosody/sharedgroups.txt:
+```
+hardworkingdeveloper@example.net=Joe Coder
+other.dev@example.com=Mel
+```
+
+### Reiniciar prosody
+```
 root@xmpp:~# service prosody restart; service prosody status
 
 ```
