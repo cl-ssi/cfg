@@ -86,7 +86,7 @@ root@beta:~ # iptables -t nat -I PREROUTING -i eno1 -p TCP -d 10.8.119.158 --dpo
 - `root@beta:~# lxc exec webserver bash`
 
 - `root@webserver:~# dpkg-reconfigure tzdata`
-- `root@webserver:~# apt-get install ssh apache2 php7.3 php7.3-xml php7.3-zip php7.3-sqlite3 php7.3-mbstring unzip sqlite3 git`
+- `root@webserver:~# apt-get install ssh apache2 php7.3 php7.3-xml php7.3-zip php7.3-sqlite3 php7.3-mbstring php7.3-bcmath unzip sqlite3 git`
 - `root@webserver:~# vi /etc/apache2/mods-available/alias.conf` cambiar AllowOverride None por All
 - `root@webserver:~# a2enmod rewrite`
 - `root@webserver:~# systemctl restart apache2`
