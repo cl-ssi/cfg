@@ -285,6 +285,6 @@ root@leia:~# iptables -t nat -I PREROUTING -i eno1 -p TCP -d $PUBLIC_IP --dport 
 root@leia:~# netfilter-persistent save
 
 Probar con un cliente de sftp
-sftp -P 2222 estadistica@10.0.0.50  password:salud2019
+sftp -P 2222 estadistica@10.0.0.50  password:xxxx
 
 ```
