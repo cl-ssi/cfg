@@ -9,7 +9,7 @@ en configuracion jason -numero de debian
 ejecutar los siguientes comandos:
 
 para acceder a permisos de administracion sudo su-
-´´´
+```
 apt-get update
 apt-get upgrade
 apt-get install git
@@ -21,7 +21,7 @@ apt-get install php7.4-dom
 apt-get install php7.4-zip
 apt-get install php7.4-xml
 apt-get install vim
-´´´
+```
 
 como root apt-get install mariadb-server
 
