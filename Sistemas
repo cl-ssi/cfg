@@ -6,10 +6,23 @@ MODULO SISTEMA DE TURNOS:
 - Permite tanto al funcionario como al supervisor confirmar un cambio de turno.
 
 PHUQHAÑA:
-Control de contratos (mensual/horas)
-Trazabilidad de contratos (pendiente/finalizado)
-Segumineto de la Ruta de firmasdesde la solicitud de contratacion hasta la hoja de pagos.
-Valida el cumplimiento del servicio
-Mejora los tiempos de respuesta
+-Realiza la visualización de la ruta de firmas de todo el proceso que atraviesa el pago de un prestador de servicios.
+-Control de contratos (mensual/horas)
+-Trazabilidad de contratos (pendiente/finalizado)
+-Seguimiento de la Ruta de firmas desde la solicitud de contratación hasta la hoja de pagos.
+-Valida el cumplimiento del servicio
+-Mejora los tiempos de respuesta
 
 MODULO GENERADOR DE DOCUMENTOS
+-unificar el formato de los documentos generados dentro de la institución.
+-Manejar un respaldo digital de todos los documentos.
+-permite la creación de oficios, memorándum, reservados, resoluciones, circulares y actas de recepción con formatos de plantillas precargadas.
+-Asignación de numero de folio único.
+-Envió de documentación digitalizada de manera automática a los correos destinatarios
+
+MÓDULO DE SOLICITUD DE FIRMAS
+-Gestiona el circuito de firmas digitales a los documentos creados en la institución.
+-Maneja una bandeja de visualización independiente para cada usuario, detallando los documentos pendientes por firmar o visar.
+
+
+
