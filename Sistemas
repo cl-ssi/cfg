@@ -1,0 +1,15 @@
+MODULO SISTEMA DE TURNOS:
+- Permite llevar el control de los turnos (3er turno, 4to turno, etc).
+- Agregar en base a las personas disponibles para reemplazar un turno.
+- Controla que no se puedan tomar (solapar) dos turnos en paralelo.
+- Permite obtener un listado de turnos realizados en el mes por persona, donde RRHH puede contrastar con la asistencia y validar para su posterior pago.
+- Permite tanto al funcionario como al supervisor confirmar un cambio de turno.
+
+PHUQHAÑA:
+Control de contratos (mensual/horas)
+Trazabilidad de contratos (pendiente/finalizado)
+Segumineto de la Ruta de firmasdesde la solicitud de contratacion hasta la hoja de pagos.
+Valida el cumplimiento del servicio
+Mejora los tiempos de respuesta
+
+MODULO GENERADOR DE DOCUMENTOS
