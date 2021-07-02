@@ -4,7 +4,7 @@
 /instalar wls2 siguiendo los pasos de la pagina
 instalr windows terminal
 cambiar a debian para que se inicie predeterminadamente
-en configuracion jason -numero de debian
+en configuracion json -numero de debian
 
 ejecutar los siguientes comandos:
 
@@ -36,7 +36,9 @@ encender mysql
 
 conectarse como root
 crear un usuario 
+```
 CREATE USER 'tic'@'localhost' IDENTIFIED BY 'password';
+```
 y dar permisos a usuario
 GRANT ALL PRIVILEGES ON *.* TO 'tic'@'localhost';
 
