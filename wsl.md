@@ -21,6 +21,9 @@ apt-get install php7.4-dom
 apt-get install php7.4-zip
 apt-get install php7.4-xml
 apt-get install vim
+apt-get install wget
+apt-get install php7.3-pdo-mysql
+
 ```
 
 como root apt-get install mariadb-server
@@ -34,7 +37,9 @@ como root composer install
 encender mysql
  /etc/init.d/mysql start
 
+
 conectarse como root
+mysql -u root
 crear un usuario 
 ```
 CREATE USER 'tic'@'localhost' IDENTIFIED BY 'password';
@@ -43,7 +48,7 @@ y dar permisos a usuario
 GRANT ALL PRIVILEGES ON *.* TO 'tic'@'localhost';
 
 entrar a maria
-mysql -u root
+
 
 crear 3 bd
 create database nombrebd;
@@ -54,8 +59,7 @@ exportar el ionline
 
 
 como root 
-apt-get install wget
-apt-get install php7.4-pdo-mysql
+
 
 logearme en git poner en terminal
 
