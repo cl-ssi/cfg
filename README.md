@@ -1,5 +1,7 @@
 # Configuraciones varias
 
+- [Guía WSL](guia_wsl.md)
+
 ## Configuración del servidor
 
 Escenario:
