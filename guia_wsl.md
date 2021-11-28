@@ -24,6 +24,7 @@ apt-get install php7.4-pdo-mysql
 apt-get install mariadb-server
 apt-get install vim
 apt-get install wget
+apt-get install curl
 apt-get install nodejs npm
 ```
 
@@ -58,6 +59,15 @@ apt-get install nodejs npm
     * Iniciar el servidor `php artisan serve`
     * Abrir el code `$ code . `
     * Abrir el navegador y poner `http://localhost:8000`
+
+
+## Google Cloud
+
+### Instalar cloud_sql_proxy
+* `# wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O /usr/bin/cloud_sql_proxy`
+* `# chmod +x /usr/bin/cloud_sql_proxy`
+### Instala Cloud SDK
+* https://cloud.google.com/sdk/docs/install
 
 
 
