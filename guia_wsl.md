@@ -24,6 +24,7 @@ apt-get install php7.4-pdo-mysql
 apt-get install mariadb-server
 apt-get install vim
 apt-get install wget
+apt-get install nodejs npm
 ```
 
 ## Instalar composer siguiendo la guía de composer.org
