@@ -52,7 +52,7 @@ apt-get install nodejs npm
     * `$ git config --global user.email "atorresf@gmail.com"`
 
 ## Pasos para empezar a trabajar
-* Iniciar MySql `$ sudo /etc/init.d/mysql start`
+* Iniciar MySql `$ sudo /etc/init.d/mariadb start`
 * Entrar al proyecto, por ejemplo 'ionline' en un nuevo terminal
     * `cd` 
     * `cd ionline`
@@ -68,6 +68,15 @@ apt-get install nodejs npm
 * `# chmod +x /usr/bin/cloud_sql_proxy`
 ### Instala Cloud SDK
 * https://cloud.google.com/sdk/docs/install
+
+
+
+
+
+
+
+
+
 
 
 
