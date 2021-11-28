@@ -1,4 +1,4 @@
-# Entorno de trabajo para Laravel en windows con WSL y Debian
+# Entorno de trabajo para Laravel en windows con WSL y Debian 11
 ## Instalar WSL 2
 
 * Instalar WSL2 siguiendo los pasos de la guía oficial de microsoft
@@ -13,14 +13,14 @@
 apt-get update
 apt-get upgrade
 apt-get install git
-apt-get install php7.3
-apt-get install php7.3-curl
-apt-get install php7.3-mbstring
-apt-get install php7.3-gd
-apt-get install php7.3-dom
-apt-get install php7.3-zip
-apt-get install php7.3-xml
-apt-get install php7.3-pdo-mysql
+apt-get install php7.4
+apt-get install php7.4-curl
+apt-get install php7.4-mbstring
+apt-get install php7.4-gd
+apt-get install php7.4-dom
+apt-get install php7.4-zip
+apt-get install php7.4-xml
+apt-get install php7.4-pdo-mysql
 apt-get install mariadb-server
 apt-get install vim
 apt-get install wget
@@ -28,23 +28,26 @@ apt-get install wget
 
 ## Instalar composer siguiendo la guía de composer.org
 
+## MySql 
+* Cómo root encender mysql `# /etc/init.d/mariadb start`
+* Conectarse como root `# mariadb -u root`
+* Crear las bases de datos `create database NOMBRE_DE_LA_BD;`
+* Crear un usuario `CREATE USER 'tic'@'localhost' IDENTIFIED BY 'password';`
+* Dar permisos a todas las BDs al usuario `GRANT ALL PRIVILEGES ON *.* TO 'tic'@'localhost';`
+* Reiniciar MySql `# /etc/init.d/mariadb restart`
+
 ## Clonar un proyecto con Git
 * `$ cd ` (para llegar el home del usuario)
 * `$ git clone http://github.com/cl-ssi/ionline`
 * `$ cd ionline`
 * `$ composer install`
+* `$ cp .env.example .env`
 * `$ php artisan key:generate`
+* editar archivo .env y poner los datos de la base de datos.
+* `$ php artisan migrate:fresh --see`
 * Logearse en git, escribir en un terminal
-    * `$ git config --global user.name "adrianaol"`
-    * `$ git config --global user.email "oviedolopezadriana13@gmail.com"`
-
-## MySql 
-* Cómo root encender mysql `# /etc/init.d/mysql start`
-* Conectarse como root `# mysql -u root`
-* Crear las bases de datos `create database NOMBRE_DE_LA_BD;`
-* Crear un usuario `CREATE USER 'tic'@'localhost' IDENTIFIED BY 'password';`
-* Dar permisos a todas las BDs al usuario `GRANT ALL PRIVILEGES ON *.* TO 'tic'@'localhost';`
-* Reiniciar MySql `# /etc/init.d/mysql restart`
+    * `$ git config --global user.name "AquaroTorres"`
+    * `$ git config --global user.email "atorresf@gmail.com"`
 
 ## Pasos para empezar a trabajar
 * Iniciar MySql `$ sudo /etc/init.d/mysql start`
@@ -52,12 +55,12 @@ apt-get install wget
     * `cd` 
     * `cd ionline`
     * Iniciar el servidor `php artisan serve`
-    * abrir el code `$ code . `
-    * Abrir el navegador y poner `localhost:8000`
+    * Abrir el code `$ code . `
+    * Abrir el navegador y poner `http://localhost:8000`
 
 
 
-### Versión antigua
+### Versión antigua para windows
 ```
 Instalar Composer
 Descargar PHP, MySQL, Git (zips, no los instalables)
