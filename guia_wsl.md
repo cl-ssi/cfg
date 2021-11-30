@@ -18,6 +18,7 @@ apt-get install php7.4-curl
 apt-get install php7.4-mbstring
 apt-get install php7.4-gd
 apt-get install php7.4-dom
+apt-get install php7.4-soap
 apt-get install php7.4-zip
 apt-get install php7.4-xml
 apt-get install php7.4-pdo-mysql
